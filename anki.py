@@ -32,10 +32,11 @@ def get_clipbox():
 
 text = get_clipbox()
 reference_id =sys.argv[1]
+deck_name =sys.argv[2]
 my_notes = []
 cur_note = {
-    "deckName": "测试",#将这里改成你要加入的牌组名
-    "modelName": "RemNote",#将这里改成你的卡片类型
+    "deckName": deck_name,
+    "modelName": "RemNote",
     "fields": {
     }
 }
@@ -43,4 +44,3 @@ cur_note["fields"]["正面"] = text
 cur_note["fields"]["背面"] = reference_id
 my_notes.append(dict(cur_note))
 invoke("addNotes", notes=my_notes)
-
