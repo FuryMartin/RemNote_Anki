@@ -32,7 +32,7 @@ def get_clipbox():
 
 text = get_clipbox()
 reference_id =sys.argv[1]
-deck_name =sys.argv[2]
+deck_name = sys.argv[2].replace(":", "::")
 my_notes = []
 cur_note = {
     "deckName": deck_name,
@@ -43,4 +43,7 @@ cur_note = {
 cur_note["fields"]["正面"] = text
 cur_note["fields"]["背面"] = reference_id
 my_notes.append(dict(cur_note))
-invoke("addNotes", notes=my_notes)
+result = invoke("addNotes", notes=my_notes)
+if None in result:
+    invoke('createDeck',deck=deck_name)
+    invoke("addNotes", notes=my_notes)
